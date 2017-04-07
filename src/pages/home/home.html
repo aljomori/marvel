@@ -1,0 +1,28 @@
+<ion-header>
+   <ion-navbar>
+    <ion-title>
+      KunderCon
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar
+  [(ngModel)]="customSearch"
+  [showCancelButton]="shouldShowCancel"
+  [formControl]="searchControl"
+  (ionInput)="onSearchInput($event)"
+  (ionCancel)="onCancel($event)">
+</ion-searchbar>
+<div *ngIf="searching" class="spinner-container">
+        <ion-spinner></ion-spinner>
+    </div>
+
+    <ion-list>
+        <ion-item *ngFor="let item of items">
+            {{item.title}}
+        </ion-item>
+    </ion-list>
+
+    {{items}}
+</ion-content>
