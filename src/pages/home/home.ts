@@ -22,12 +22,10 @@ export class HomePage {
 
   ionViewDidLoad() {
 
-    this.setFilteredItems();
-
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
 
       this.searching = false;
-      this.setFilteredItems();
+      //this.setFilteredItems();
 
     });
 
@@ -40,16 +38,22 @@ export class HomePage {
 
   setFilteredItems() {
 
-    this.items = this.dataService.filterItems(this.customSearch);
+    // this.items = this.dataService.filterItems(this.customSearch);
 
 
   }
 
-  loadComics(){
+  loadComics() {
     this.dataService.load()
-    .then(data => {
-      this.items = data;
-    });
+      .then(data => {
+        this.items = data;
+        console.log('done')
+        console.log(this.items)
+
+      });
   }
 
+  comicDetail(item) {
+    console.log(item)
+  }
 }
