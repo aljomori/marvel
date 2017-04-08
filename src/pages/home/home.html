@@ -4,12 +4,17 @@
       KunderCon
     </ion-title>
   </ion-navbar>
+  <ion-searchbar 
+  [(ngModel)]="customSearch" 
+  [showCancelButton]="shouldShowCancel" 
+  [formControl]="searchControl" 
+  (ionInput)="onSearchInput($event)"
+    (ionCancel)="onCancel($event)">
+  </ion-searchbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-searchbar [(ngModel)]="customSearch" [showCancelButton]="shouldShowCancel" [formControl]="searchControl" (ionInput)="onSearchInput($event)"
-    (ionCancel)="onCancel($event)">
-  </ion-searchbar>
+
   <div *ngIf="searching" class="spinner-container">
     <ion-spinner></ion-spinner>
   </div>
@@ -17,11 +22,15 @@
   <ion-list>
     <ion-item *ngFor="let item of items">
       <ion-thumbnail item-left>
-        <img [src]="item.thumbnail.path">
+        <img [src]="item.thumbnail.path+'.'+item.thumbnail.extension">
       </ion-thumbnail>
       <h2>{{item.title}}</h2>
-      <button ion-button clear item-right (click)="comicDetail(item)">View</button> 
+      <button ion-button clear (click)="comicDetail(item)">View</button>
     </ion-item>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

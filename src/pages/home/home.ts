@@ -34,6 +34,7 @@ export class HomePage {
 
   onSearchInput() {
     this.searching = true;
+    this.dataService.load({title:this.customSearch});
   }
 
   setFilteredItems() {
@@ -44,7 +45,7 @@ export class HomePage {
   }
 
   loadComics() {
-    this.dataService.load()
+    this.dataService.load({})
       .then(data => {
         this.items = data;
         console.log('done')
@@ -56,4 +57,14 @@ export class HomePage {
   comicDetail(item) {
     console.log(item)
   }
+
+  doInfinite(infiniteScroll) {
+    console.log('Begin async operation');
+    this.dataService.load({})
+
+    infiniteScroll.complete();
+
+
+  }
+
 }
