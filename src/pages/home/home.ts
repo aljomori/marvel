@@ -70,13 +70,10 @@ export class HomePage {
       this.dataService.load({ offset: offset })
         .then(data => {
 
-          console.log(this.items.length)
-
           for (var item in data.results) {
-            this.items.push(item);
+            this.items.push(data.results[item]);
           }
-
-          console.log(this.items.length)
+          
           console.log('Finish async operation');
           infiniteScroll.complete();
         });
