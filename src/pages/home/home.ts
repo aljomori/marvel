@@ -26,25 +26,19 @@ export class HomePage {
   ionViewDidLoad() {
 
     this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
-
       this.searching = false;
-      //this.setFilteredItems();
 
     });
-
 
   }
 
   onSearchInput() {
     this.searching = true;
-    this.dataService.load({ title: this.customSearch });
-  }
-
-  setFilteredItems() {
-
-    // this.items = this.dataService.filterItems(this.customSearch);
-
-
+    this.dataService.load({ title: this.customSearch })
+      .then(data => {
+        this.data = data;
+        this.items = this.data.results;
+      });
   }
 
   loadComics() {
@@ -66,7 +60,7 @@ export class HomePage {
     if (offset < this.data.total) {
       this.dataService.load({ offset: offset })
         .then(data => {
-          if (data.hasOwnProperty('results')){
+          if (data.hasOwnProperty('results')) {
             for (var item in data.results) {
               this.items.push(data.results[item]);
             }
@@ -76,8 +70,6 @@ export class HomePage {
     } else {
       infiniteScroll.complete();
     }
-
-
   }
 
 }
