@@ -23,7 +23,7 @@ export class ComicProvider {
     params.set('apikey', "eec2b791e6e4abce698cc51c828fcd0a");
     params.set('hasDigitalIssue', "true");
 
-    if (this.data) {
+    if ( query == 1) {
       return Promise.resolve(this.data);
     }
     params = this.jsonConcat(params, query);

@@ -69,11 +69,12 @@ export class HomePage {
     if (offset < this.data.total) {
       this.dataService.load({ offset: offset })
         .then(data => {
-
-          for (var item in data.results) {
-            this.items.push(data.results[item]);
+          if (data.hasOwnProperty('results')){
+            for (var item in data.results) {
+              this.items.push(data.results[item]);
+            }
           }
-          
+
           console.log('Finish async operation');
           infiniteScroll.complete();
         });
