@@ -16,6 +16,7 @@ export class HomePage {
   searchControl: FormControl;
   items: any;
   data: any;
+  search: any;
   searching: any = false;
 
   constructor(public navCtrl: NavController, public dataService: ComicProvider) {
@@ -34,7 +35,10 @@ export class HomePage {
 
   onSearchInput() {
     this.searching = true;
-    this.dataService.load({ title: this.customSearch })
+    if (this.customSearch.length > 0){
+      this.search = { title: this.customSearch };
+    }
+    this.dataService.load(this.search)
       .then(data => {
         this.data = data;
         this.items = this.data.results;
