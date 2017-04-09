@@ -13,7 +13,7 @@
 
   <ion-slides *ngIf="item.images.length > 0">
     <ion-slide *ngFor="let slide of item.images">
-      <img [src]="slide.path">
+      <img [src]="slide.path+'.'+slide.extension">
     </ion-slide>
   </ion-slides>
 
