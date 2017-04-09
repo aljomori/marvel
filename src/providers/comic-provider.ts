@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http,URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 export function extend<A>(a: A): A;
@@ -46,6 +46,7 @@ export class ComicProvider {
 
     params = this.jsonConcat(params,query);
     // don't have the data yet
+    console.log(params);
     return new Promise(resolve => {
      this.http.get('https://gateway.marvel.com:443/v1/public/comics',{search:params})
 //     this.http.get('data.json', params)
