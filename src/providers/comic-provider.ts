@@ -1,21 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http,URLSearchParams } from '@angular/http';
+import { Http, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-export function extend<A>(a: A): A;
-export function extend<A, B>(a: A, b: B): A & B;
-export function extend<A, B, C>(a: A, b: B, c: C): A & B & C;
-export function extend<A, B, C, D>(a: A, b: B, c: C, d: D): A & B & C & D;
-export function extend(...args: any[]): any {
-  const newObj = {};
-  for (const obj of args) {
-    for (const key in obj) {
-      //copy all the fields
-      newObj[key] = obj[key];
-    }
-  }
-  return newObj;
-};
 /*
   Generated class for the ComicProvider provider.
 
@@ -27,7 +13,6 @@ export class ComicProvider {
 
   data: any;
 
-
   constructor(private http: Http) {
     this.data = null;
   }
@@ -37,21 +22,19 @@ export class ComicProvider {
     let params: URLSearchParams = new URLSearchParams();
     params.set('apikey', "eec2b791e6e4abce698cc51c828fcd0a");
     params.set('hasDigitalIssue', "true");
-    
+
     if (this.data) {
-      // already loaded data
       return Promise.resolve(this.data);
     }
 
 
-    params = this.jsonConcat(params,query);
-    // don't have the data yet
+    params = this.jsonConcat(params, query);
     return new Promise(resolve => {
-  //   this.http.get('https://gateway.marvel.com:443/v1/public/comics',{search:params})
-     this.http.get('data.json', {search:params})
+     this.http.get('https://gateway.marvel.com:443/v1/public/comics',{search:params})
+  //    this.http.get('data.json', { search: params })
         .map(res => res.json())
         .subscribe(response => {
-          this.data = response.data.results;
+          this.data = response.data;
           resolve(this.data);
         });
     });
@@ -66,7 +49,7 @@ export class ComicProvider {
 
   jsonConcat(param, o2) {
     for (var key in o2) {
-      param.set(key,o2[key]);
+      param.set(key, o2[key]);
     }
     return param;
   }
