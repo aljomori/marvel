@@ -11,16 +11,13 @@
   <h2>{{item.title}}</h2>
 
 
-  <p>
-    {{item.description}}
-  </p>
-
-
-  <ion-slides *ngIf="item.images.legth > 0">
+  <ion-slides *ngIf="item.images.length > 0">
     <ion-slide *ngFor="let slide of item.images">
       <img [src]="slide.path">
     </ion-slide>
   </ion-slides>
 
-
+  <p>
+    {{item.description}}
+  </p>
 </ion-content>

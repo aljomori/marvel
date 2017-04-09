@@ -50,9 +50,6 @@ export class HomePage {
     this.dataService.load({})
       .then(data => {
         this.items = data;
-        console.log('done')
-        console.log(this.items)
-
       });
   }
 
