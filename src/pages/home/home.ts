@@ -60,11 +60,8 @@ export class HomePage {
   }
 
   doInfinite(infiniteScroll) {
-    console.log('Begin async operation');
 
     var offset = this.data.offset + this.data.count;
-
-    console.log(offset);
 
     if (offset < this.data.total) {
       this.dataService.load({ offset: offset })
@@ -74,12 +71,9 @@ export class HomePage {
               this.items.push(data.results[item]);
             }
           }
-
-          console.log('Finish async operation');
           infiniteScroll.complete();
         });
     } else {
-      console.log('Finish async operation - no more');
       infiniteScroll.complete();
     }
 

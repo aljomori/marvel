@@ -23,13 +23,13 @@ export class ComicProvider {
     params.set('apikey', "eec2b791e6e4abce698cc51c828fcd0a");
     params.set('hasDigitalIssue', "true");
 
-    if ( query == 1) {
+    if (query == 1) {
       return Promise.resolve(this.data);
     }
     params = this.jsonConcat(params, query);
     return new Promise(resolve => {
-     this.http.get('https://gateway.marvel.com:443/v1/public/comics',{search:params})
-  //   this.http.get('data.json', { search: params })
+      this.http.get('https://gateway.marvel.com:443/v1/public/comics', { search: params })
+        //   this.http.get('data.json', { search: params })
         .map(res => res.json())
         .subscribe(response => {
           this.data = response.data;
