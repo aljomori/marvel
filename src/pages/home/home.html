@@ -8,7 +8,7 @@
   [(ngModel)]="customSearch" 
   [showCancelButton]="shouldShowCancel" 
   [formControl]="searchControl" 
-  (ionInput) = "onInputEnter"
+  (ionInput) = "onInputEnter($event)"
   (search)="onSearchInput($event)"
     (ionCancel)="onCancel($event)">
   </ion-searchbar>
