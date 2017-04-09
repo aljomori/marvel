@@ -28,7 +28,7 @@
       <h2>{{item.title}}</h2>
       <button ion-button clear (click)="comicDetail(item)">View</button>
     </ion-item>
-    <h2 *ngShow="items"> Any comic found it</h2>
+    <h2 [hidden]="!(items)"> Any comic found it</h2>
   </ion-list>
 
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
