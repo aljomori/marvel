@@ -35,14 +35,18 @@ export class HomePage {
 
   onSearchInput() {
     this.searching = true;
-    if (this.customSearch.length > 0){
-      this.search = { title: this.customSearch };
-    }
     this.dataService.load(this.search)
       .then(data => {
         this.data = data;
         this.items = this.data.results;
       });
+  }
+  onInputEnter() {
+    if (this.customSearch.length > 0) {
+      this.search = { title: this.customSearch };
+    } else {
+      this.search = {};
+    }
   }
 
   loadComics() {

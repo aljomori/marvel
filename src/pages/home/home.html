@@ -8,6 +8,7 @@
   [(ngModel)]="customSearch" 
   [showCancelButton]="shouldShowCancel" 
   [formControl]="searchControl" 
+  (ionInput) = "onInputEnter"
   (search)="onSearchInput($event)"
     (ionCancel)="onCancel($event)">
   </ion-searchbar>
@@ -27,12 +28,13 @@
       <h2>{{item.title}}</h2>
       <button ion-button clear (click)="comicDetail(item)">View</button>
     </ion-item>
+    <h2 *ngIf="items.length <= 0"> {{Any comic found it}} </h2>
   </ion-list>
 
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content
       loadingSpinner="bubbles"
-      loadingText="Loading more data...">
+      loadingText="Loading more comics...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
