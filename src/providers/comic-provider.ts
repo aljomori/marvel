@@ -47,7 +47,7 @@ export class ComicProvider {
     params = this.jsonConcat(params,query);
     // don't have the data yet
     return new Promise(resolve => {
-     this.http.get('https://gateway.marvel.com:443/v1/public/comics',params)
+     this.http.get('https://gateway.marvel.com:443/v1/public/comics',{search:params})
 //     this.http.get('data.json', params)
         .map(res => res.json())
         .subscribe(response => {
