@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import { ComicProvider } from '../../providers/comic-provider';
+import { ComicDetailPage } from '../comicDetail/comicDetail';
+
 import 'rxjs/add/operator/debounceTime';
 
 @Component({
@@ -34,7 +36,7 @@ export class HomePage {
 
   onSearchInput() {
     this.searching = true;
-    this.dataService.load({title:this.customSearch});
+    this.dataService.load({ title: this.customSearch });
   }
 
   setFilteredItems() {
@@ -55,16 +57,13 @@ export class HomePage {
   }
 
   comicDetail(item) {
-    console.log(item)
+    this.navCtrl.push(ComicDetailPage, {item} );
   }
 
   doInfinite(infiniteScroll) {
     console.log('Begin async operation');
     this.dataService.load({})
-
     infiniteScroll.complete();
-
-
   }
 
 }

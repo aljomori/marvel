@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{item.title}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h2>{{item.title}}</h2>
+
+
+  <p>
+    {{item.description}}
+  </p>
+
+
+  <ion-slides *ngIf="item.images.legth > 0">
+    <ion-slide *ngFor="let slide of item.images">
+      <img [src]="slide.path">
+    </ion-slide>
+  </ion-slides>
+
+
+</ion-content>

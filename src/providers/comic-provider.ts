@@ -36,8 +36,8 @@ export class ComicProvider {
 
     let params: URLSearchParams = new URLSearchParams();
     params.set('apikey', "eec2b791e6e4abce698cc51c828fcd0a");
-
-
+    params.set('hasDigitalIssue', "true");
+    
     if (this.data) {
       // already loaded data
       return Promise.resolve(this.data);
@@ -48,7 +48,7 @@ export class ComicProvider {
     // don't have the data yet
     return new Promise(resolve => {
      this.http.get('https://gateway.marvel.com:443/v1/public/comics')
-//      this.http.get('data.json', params)
+//     this.http.get('data.json', params)
         .map(res => res.json())
         .subscribe(response => {
           this.data = response.data.results;
