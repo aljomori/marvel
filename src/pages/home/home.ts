@@ -36,12 +36,14 @@ export class HomePage {
   }
 
   onSearchInput() {
-    this.searching = true;
-    this.dataService.load(this.search)
-      .then(data => {
-        this.data = data;
-        this.items = this.data.results;
-      });
+    if (!this.searching) {
+      this.searching = true;
+      this.dataService.load(this.search)
+        .then(data => {
+          this.data = data;
+          this.items = this.data.results;
+        });
+    }
   }
   onInputEnter() {
 
