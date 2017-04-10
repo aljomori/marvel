@@ -59,7 +59,7 @@ export class HomePage {
       this.search = {};
     }
 
-    if (this.customSearch.length > 4) {
+    if (this.customSearch.length > 3) {
       this.onSearchInput();
     }
 

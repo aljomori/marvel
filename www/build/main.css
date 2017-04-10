@@ -24312,3 +24312,11 @@ ion-navbar.toolbar {
     padding-top: calc(16px + 20px);
   }
 }
+
+page-home .spinner-container {
+  text-align: center;
+}
+
+page-home ion-list.searching {
+  opacity: 0.2;
+}

@@ -20,7 +20,7 @@
     <ion-spinner></ion-spinner>
   </div>
 
-  <ion-list>
+  <ion-list [ngClass]="{'searching':searching}">
     <ion-item *ngFor="let item of items" >
       <ion-thumbnail item-left (click)="comicDetail(item)">
         <img [src]="item.thumbnail.path+'.'+item.thumbnail.extension">
