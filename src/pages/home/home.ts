@@ -81,9 +81,10 @@ export class HomePage {
   doInfinite(infiniteScroll) {
 
     var offset = this.data.offset + this.data.count;
-
+    var params = this.search;
+    params.offset = offset;
     if (offset < this.data.total) {
-      this.dataService.load({ offset: offset })
+      this.dataService.load(params)
         .then(data => {
           if (data.hasOwnProperty('results')) {
             for (var item in data.results) {
