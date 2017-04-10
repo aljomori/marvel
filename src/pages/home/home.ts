@@ -3,7 +3,6 @@ import { NavController } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import { ComicProvider } from '../../providers/comic-provider';
 import { ComicDetailPage } from '../comicDetail/comicDetail';
-
 import 'rxjs/add/operator/debounceTime';
 
 @Component({
@@ -18,6 +17,9 @@ export class HomePage {
   data: any;
   search: any;
   searching: any = false;
+  regex = new RegExp('^\\d{4}$');
+  year = new Date().getFullYear();
+
 
   constructor(public navCtrl: NavController, public dataService: ComicProvider) {
     this.searchControl = new FormControl();
@@ -42,8 +44,22 @@ export class HomePage {
       });
   }
   onInputEnter() {
+
+
     if (this.customSearch.length > 0) {
-      this.search = { title: this.customSearch };
+
+      if (this.regex.test(this.customSearch)
+        && this.customSearch >= "1939"
+        && parseInt(this.customSearch) <= this.year) {
+
+        this.search = { dateRange: "01-01-" + this.customSearch + ",31-12-" + this.customSearch };
+        console.log(this.search)
+      } else {
+
+        this.search = { title: this.customSearch };
+
+      }
+
     } else {
       this.search = {};
     }
@@ -78,6 +94,21 @@ export class HomePage {
     } else {
       infiniteScroll.complete();
     }
+  }
+
+  getDate(dates, type) {
+    var date = null;
+
+    for (var i in dates) {
+
+      if (dates[i].type === type) {
+        date = dates[i].date;
+      }
+
+    }
+
+    return date;
+
   }
 
 }

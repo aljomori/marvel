@@ -8,7 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ComicDetailPage } from '../pages/comicDetail/comicDetail';
 import { ComicProvider } from '../providers/comic-provider';
-
+import {MomentModule} from 'angular2-moment';
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { ComicProvider } from '../providers/comic-provider';
   imports: [
     BrowserModule,
     HttpModule,
+    MomentModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

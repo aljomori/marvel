@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-navbar *navbar danger>
+  <ion-navbar color="danger">
     <ion-title>
-      KunderCon
+     Comics
     </ion-title>
   </ion-navbar>
   <ion-searchbar 
@@ -21,14 +21,16 @@
   </div>
 
   <ion-list>
-    <ion-item *ngFor="let item of items">
-      <ion-thumbnail item-left>
+    <ion-item *ngFor="let item of items" >
+      <ion-thumbnail item-left (click)="comicDetail(item)">
         <img [src]="item.thumbnail.path+'.'+item.thumbnail.extension">
       </ion-thumbnail>
       <h2>{{item.title}}</h2>
+      <h2>
+        {{ getDate(item.dates,"onsaleDate") | amDateFormat:'L'  }}
+      </h2>
       <button ion-button clear (click)="comicDetail(item)">View</button>
     </ion-item>
-    <h2 [hidden]="!(items)"> Any comic found it</h2>
   </ion-list>
 
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
