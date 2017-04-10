@@ -45,7 +45,6 @@ export class HomePage {
   }
   onInputEnter() {
 
-
     if (this.customSearch.length > 0) {
 
       if (this.regex.test(this.customSearch)
@@ -53,16 +52,18 @@ export class HomePage {
         && parseInt(this.customSearch) <= this.year) {
 
         this.search = { dateRange: "01-01-" + this.customSearch + ",31-12-" + this.customSearch };
-        console.log(this.search)
       } else {
-
         this.search = { title: this.customSearch };
-
       }
-
     } else {
       this.search = {};
     }
+
+    if (this.customSearch.length > 4) {
+      this.onSearchInput();
+    }
+
+
   }
 
   loadComics() {

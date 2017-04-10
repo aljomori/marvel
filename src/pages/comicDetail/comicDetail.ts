@@ -14,7 +14,6 @@ export class ComicDetailPage {
 
   constructor(public navCtrl: NavController, private navParams: NavParams, public dataService: ComicProvider) {
     this.item = navParams.get('item');
-    console.log(this.item)
   }
 
 }
