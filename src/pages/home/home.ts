@@ -42,6 +42,7 @@ export class HomePage {
         .then(data => {
           this.data = data;
           this.items = this.data.results;
+           this.searching = false;
         });
     }
   }
